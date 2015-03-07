@@ -27,4 +27,4 @@ From the `sling-client-node` directory run the following command. You will need 
 > ./node_modules/coffee-script/bin/coffee examples/basic.coffee
 ```
 
-By default the client will use the production environment for the Sling API and web sockets. This behaviour can be overridden by setting `SLING_NODE_API_HOST` and `SLING_NODE_WSS_URL` environment variables.
+By default the client will connect to the Sling production environment. This behaviour can be overridden by setting `SLING_NODE_API_HOST` and `SLING_NODE_WSS_URL` environment variables.
