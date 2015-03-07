@@ -7,8 +7,8 @@ Message = require './message'
 User    = require './user'
 
 class SlingClient extends EventEmitter
-  apiHost: process.env.HUBOT_SLING_API_HOST or 'api.sling.is'
-  socketUrl: process.env.HUBOT_SLING_WSS_URL or 'wss://socket.sling.is'
+  apiHost: process.env.SLING_NODE_API_HOST or 'api.sling.is'
+  socketUrl: process.env.SLING_NODE_WSS_URL or 'wss://socket.sling.is'
 
   # Construct a new instance of the Sling client.
   #
