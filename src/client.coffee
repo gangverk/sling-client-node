@@ -8,6 +8,7 @@ User    = require './user'
 
 class SlingClient extends EventEmitter
   apiHost: process.env.SLING_NODE_API_HOST or 'api.sling.is'
+  apiVersion: process.env.SLING_NODE_API_VERSION or 'v1'
   socketUrl: process.env.SLING_NODE_WSS_URL or 'wss://socket.sling.is'
 
   # Construct a new instance of the Sling client.
@@ -54,14 +55,14 @@ class SlingClient extends EventEmitter
           # listeners the bot has logged into Sling.
           @self = new User @, data.body.user
           @emit 'loggedIn', @self
-          
+
           # Connect to the Sling web sockets server
           @connect()
         else
           @emit 'error', 'No authorization header returned.'
     else
       @emit 'error', data
-  
+
   # Completion handler for logging out of Sling.
   #
   # Returns nothing.
@@ -139,12 +140,12 @@ class SlingClient extends EventEmitter
     options =
       hostname: @apiHost,
       method: method,
-      path: 'https://' + @apiHost + '/' + path
+      path: 'https://' + @apiHost + '/' + @apiVersion + '/' + path
 
     post_data = JSON.stringify(payload)
-    
+
     if post_data
-      options.headers = 
+      options.headers =
         'Content-Type': 'application/json;charset=utf-8',
         'Content-Length': post_data.length
 
