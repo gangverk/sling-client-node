@@ -82,19 +82,23 @@ class SlingClient extends EventEmitter
     @ws.on 'open', =>
       @connected = true
       @_send {'command': 'join', 'room': @token}
+      @logger.info 'Opening...'
       @emit 'open'
 
     @ws.on 'message', (data, flags) =>
       @onMessage JSON.parse(data)
 
     @ws.on 'error', (error) =>
+      @logger.info 'ERROR: ' + error
       @emit 'error', error
 
     @ws.on 'close', =>
       @emit 'close'
+      @logger.info 'Closing...'
       @connected = false
 
     @ws.on 'ping', (data, flags) =>
+      @logger.info 'Pinging with data: ' + data + ' and flags: ' + flags
       @ws.pong
 
   # Send a message to Sling via web sockets.
