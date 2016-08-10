@@ -1,3 +1,6 @@
+### v1.0.2 (2016-10-08)
+- Update dependencies
+
 ### v1.0.1 (2016-06-08)
 - Add support for using Sling API versions
 
